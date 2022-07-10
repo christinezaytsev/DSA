@@ -9,9 +9,7 @@ def merge_sort(arr):
 
         # Merge step
         # Keep track of index in left, right, and merged arrays
-        left_index = 0
-        right_index = 0
-        merge_index = 0
+        left_index, right_index, merge_index = 0, 0, 0
 
         while left_index < len(left_arr) and right_index < len(right_arr):
             if left_arr[left_index] < right_arr[right_index]:

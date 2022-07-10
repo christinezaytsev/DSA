@@ -1,0 +1,1 @@
+My notes for data structures and algorithms implemented in Python. 

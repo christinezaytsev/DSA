@@ -1,9 +1,10 @@
+from collections import deque
+
 class Node:
     def __init__(self, value):
         self.value = value
         self.left = None
         self.right = None
- 
  
 class BinaryTree:
    def __init__(self, root):
@@ -16,6 +17,8 @@ class BinaryTree:
            print(self.inorder_print(self.root, ""))
        elif traversal_type == "postorder":
            print(self.postorder_print(self.root, ""))
+       elif traversal_type == "levelorder":
+           print(self.levelorder_print(self.root, ""))    
        else:
            print("traversal not supported")
  
@@ -35,6 +38,7 @@ class BinaryTree:
            traversal_str = self.inorder_print(start.right, traversal_str)
        return traversal_str
  
+    
    def postorder_print(self, start, traversal_str):
        # Left subtree --> Right subtree --> Root
        if start:
@@ -42,6 +46,24 @@ class BinaryTree:
            traversal_str = self.postorder_print(start.right, traversal_str)
            traversal_str += str(start.value) + '-'
        return traversal_str
+
+   def levelorder_print(self, start, traversal):
+        if start is None:
+            return
+        
+        queue = deque()
+        queue.append(start)
+
+        while len(queue) > 0:
+            traversal += str(queue[0].value) + '-'
+            removed_node = queue.popleft()
+            if removed_node.left:
+                queue.append(removed_node.left)
+            if removed_node.right:
+                queue.append(removed_node.right)
+        return traversal
+
+
  
  
 #           1
@@ -61,3 +83,4 @@ if __name__ == '__main__':
    print('preorder traversal:')
    tree.print_tree("preorder")
    tree.print_tree("inorder")
+   tree.print_tree("levelorder")
